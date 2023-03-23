@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+import { WebR } from '@r-wasm/webr';
+
 import './assets/main.css'
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.config.globalProperties.webR = new WebR();
+app.mount('#app');

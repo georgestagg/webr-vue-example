@@ -4,6 +4,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
 
   font-weight: normal;
 }
@@ -29,7 +30,8 @@ a,
 
   #app {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     padding: 0 2rem;
+    width: 80%;
   }
 }

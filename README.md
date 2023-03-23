@@ -1,27 +1,18 @@
-# vue-example
+# Example of using webR in a Vue 3 application.
 
-This template should help get you started developing with Vue 3 in Vite.
+This repo contains an example of using webR as part of a Vue.js application, originally bootstrapped with [create-vue](https://github.com/vuejs/create-vue).
 
-## Recommended IDE Setup
+TypeScript source code showing how to load webR so that it can be accessed globally in any component can be found in the file `src/main.ts`. An example of using webR in a component to produce output for display can be found in the file `src/components/WebRTable.vue`.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This example loads webR into the page, obtains a copy of the `mtcars` dataset, and then [converts the dataset into a JavaScript representation](https://docs.r-wasm.org/webr/latest/convert-r-to-js.html) using `toObject()`. The HTML template associated with this component constructs a table displaying the dataset once webR has been loaded and the `mtcars` data is available.
 
-## Type Support for `.vue` Imports in TS
+The project configuration in `vite.config.ts` has been set up so that the app is served with the recommended cross-origin isolation headers set during development. The same HTTP headers should be set on the hosting web server once the application has been build and deployed to production. 
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+In addition, fallback worker scripts have been placed in the `public` folder so that if the page is not cross-origin isolated, webR will instead fall back to using a service worker for channel communication. Further information about cross-origin isolation and serving pages with webR can be found in the [webR documentation](https://docs.r-wasm.org/webr/latest/serving.html).
 
 ## Project Setup
+
+First, clone this repo and `cd` into the new directory. Then run,
 
 ```sh
 npm install
