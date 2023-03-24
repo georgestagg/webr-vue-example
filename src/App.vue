@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import WebRTable from './components/WebRTable.vue'
+import WebREditor from './components/WebREditor.vue'
 </script>
 
 <template>
+  <header>
+    <h1>Runnable code blocks in Vue.js</h1>
+    <h2>Powered by webR</h2>
+  </header>
   <main>
-    <h1>Example using webR in Vue.js</h1>
-    <WebRTable />
+    <div>
+      <p>
+        The code in the following block can be modifed and is runnable. Plotting should also work.
+      </p>
+      <WebREditor />
+    </div>
   </main>
 </template>
