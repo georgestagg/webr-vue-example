@@ -10,7 +10,7 @@ import WebREditor from './components/WebREditor.vue'
   <main>
     <div>
       <p>
-        The code in the following block can be modifed and is runnable. Plotting should also work.
+        The code in the following block can be modified and is runnable. Plotting should also work.
       </p>
       <WebREditor />
     </div>

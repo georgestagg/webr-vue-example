@@ -33,7 +33,7 @@ ace.config.set(
     <canvas
     class="webr-plot-output"
     v-show="hasPlot"
-    width="1280"
+    width="1000"
     height="800"
     ref="webrPlotOutput">
     </canvas>
@@ -72,9 +72,9 @@ ace.config.set(
 </style>
 
 <script lang="ts">
-import type { Shelter, WebR } from '@r-wasm/webr';
+import type { Shelter, WebR } from 'webr';
 import type { VAceEditorInstance } from 'vue3-ace-editor/types';
-import type { Message } from '@r-wasm/webr/chan/message';
+import type { Message } from 'webr/chan/message';
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
@@ -113,7 +113,7 @@ export default {
             try {
                 // Run user provided code
                 await this.webR.init();
-                await this.webR.evalRVoid('canvas(width=640, height=400)');
+                await this.webR.evalRVoid('webr::canvas(width=500, height=400)');
                 const result = await this.codeShelter.captureR(ace.value, {
                     withAutoprint: true,
                     captureStreams: true,
@@ -131,9 +131,11 @@ export default {
                 const msgs = await this.webR.flush();
                 this.hasPlot = false;
                 msgs.forEach((msg) => {
-                    if (msg.type === 'canvasExec'){
+                    if (msg.type === 'canvas' && msg.data.event === 'canvasImage') {
                         this.hasPlot = true;
-                        Function(`this.getContext('2d').${msg.data}`).bind(canvas)();
+                        canvas.getContext('2d')!.drawImage(msg.data.image, 0, 0);
+                    } else if (msg.type === 'canvas' && msg.data.event === 'canvasNewPage') {
+                        canvas.getContext('2d')!.clearRect(0, 0, canvas.width, canvas.height);
                     }
                 });
             } finally {

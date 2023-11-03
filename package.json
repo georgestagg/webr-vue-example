@@ -11,8 +11,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@r-wasm/webr": "^0.1.1",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "webr": "^0.2.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",

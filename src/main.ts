@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import { WebR } from '@r-wasm/webr';
+import { WebR } from 'webr';
 
 import './assets/main.css'
 
